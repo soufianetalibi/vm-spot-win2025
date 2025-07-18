@@ -28,19 +28,18 @@ resource "azurerm_network_interface" "nic" {
 
   ip_configuration {
     name                          = "internal"
-    subnet_id                    = azurerm_subnet.subnet.id
+    subnet_id                     = azurerm_subnet.subnet.id
     private_ip_address_allocation = "Dynamic"
   }
 }
 
 resource "azurerm_windows_virtual_machine" "vm" {
-  name                = "vm-spot-win2025"
-  resource_group_name = azurerm_resource_group.rg.name
-  location            = azurerm_resource_group.rg.location
-  size                = "Standard_B2s"
-  admin_username      = "azureuser"
-  admin_password      = var.admin_password
-
+  name                  = "vm-spot-win2025"
+  resource_group_name   = azurerm_resource_group.rg.name
+  location              = azurerm_resource_group.rg.location
+  size                  = "Standard_B2s"
+  admin_username        = "azureuser"
+  admin_password        = var.admin_password
   network_interface_ids = [azurerm_network_interface.nic.id]
 
   os_disk {
