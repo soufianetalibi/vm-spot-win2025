@@ -56,10 +56,7 @@ resource "azurerm_windows_virtual_machine" "vm" {
 
   priority        = "Spot"
   eviction_policy = "Delete"
-
-  billing_profile {
-    max_price = -1
-  }
+  max_bid_price   = -1
 }
 
 variable "admin_password" {
